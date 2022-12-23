@@ -10,4 +10,4 @@ DEBUG = True
 SECRET_KEY = 'secret key'
 SALT = 'shio'
 
-engine = create_engine(SQLALCHEMY_DATABASE_URI)
+# engine = create_engine(SQLALCHEMY_DATABASE_URI)

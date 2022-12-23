@@ -1,6 +1,7 @@
 from flask import Flask 
 
 app = Flask(__name__)
+app.config.from_object('config')
 
 from flask import request, abort
 import os, sys 
@@ -21,23 +22,25 @@ from linebot.models import (
 YOUR_CHANNEL_ACCESS_TOKEN = ps.get_parameters('/line/message_api/line_channel_access_token')
 YOUR_CHANNEL_SECRET = ps.get_parameters('/line/message_api/line_channel_secret')
 HEROKU_POSTGRES_URL = ps.get_parameters('/heroku/postgres_url')
-engine = create_engine(HEROKU_POSTGRES_URL)
+
+# engine = create_engine(HEROKU_POSTGRES_URL)
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 @app.route("/callback", methods=['POST'])
 def callback():
-    # get X-Line-Signature header value: signatureは意味不明な文字列
+    # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
 
-    # get request body as text: bodyはjson形式
+    # get request body as text
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
 
-    # handle webhook body: エラーメッセージを出力したくない場合tryでくるむ？ TODO: 後で調べる
+    # handle webhook body
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
+        print("Invalid signature. Please check your channel access token/channel secret.")
         abort(400)
 
     return 'OK'

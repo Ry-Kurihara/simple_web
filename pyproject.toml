@@ -11,6 +11,7 @@ python = "^3.8"
 flask = "^2.2.2"
 line-bot-sdk = "^2.3.0"
 sqlalchemy = "^1.4.45"
+boto3 = "^1.26.35"
 
 
 [build-system]
