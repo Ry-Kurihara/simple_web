@@ -1,4 +1,5 @@
 import boto3
+# debug用に.envファイルを使用する場合。.envファイルをcommitしないように注意
 try:
     from dotenv import load_dotenv
     load_dotenv()
