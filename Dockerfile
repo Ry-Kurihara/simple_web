@@ -12,7 +12,7 @@ ENV PYTHONUNBUFFERED True
 
 # working_dirをどこにするか決定。ドットを指定するとトップディレクトリ（usrやbinやetcがあるとこ）になる。
 # testを指定するとトップディレクトリにtestフォルダが作成されて、その中でこれ以降のコマンドが実行される。
-ENV APP_HOME line_msg_proc
+ENV APP_HOME test
 WORKDIR $APP_HOME
 # COPY [localコピー元] [container コピー先]
 COPY . ./

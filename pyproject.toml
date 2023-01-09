@@ -1,18 +1,16 @@
 [tool.poetry]
-name = "line-message-processor"
+name = "simple-web"
 version = "0.1.0"
 description = ""
 authors = ["ryku"]
 readme = "README.md"
-packages = [{include = "line_message_processor"}]
+packages = [{include = "simple_web"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 flask = "^2.2.2"
-line-bot-sdk = "^2.3.0"
-sqlalchemy = "^1.4.45"
-boto3 = "^1.26.35"
 gunicorn = "^20.1.0"
+
 
 [build-system]
 requires = ["poetry-core"]

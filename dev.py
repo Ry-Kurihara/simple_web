@@ -2,6 +2,7 @@ from flask import Blueprint
 
 from flask import make_response
 from flask import request
+import os 
 
 dev = Blueprint('dev', __name__)
 
@@ -12,6 +13,21 @@ def send_cookie(session_id):
     response = make_response(content)
     response.set_cookie('session_id', value=session_id)
     return response
+
+@dev.route("/get/tester")
+def get_tester():
+    env = os.environ
+
+    content = f"環境変数こんな感じ：{env}"
+    return make_response(content)
+
+@dev.route("/getreq")
+def getreq():
+    req = request.environ
+    content = f"リクエスト： {req}"
+    return make_response(content)
+    
+
 
 @dev.route("/login_mitaina")
 def get_cookie():
